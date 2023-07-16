@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css, Global } from '@emotion/react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -19,7 +18,8 @@ function App() {
 
 const globalStyle = css`
   body {
-    margin: 0;
+    width: 1280px;
+    margin: 0 auto;
     padding: 0;
     box-sizing: border-box;
   }
