@@ -1,9 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+
+import useSearch from '@/hooks/useSearch';
 import SearchBar from '@components/SearchBar';
-import SearchRecommend from '@/components/SearchRecommend';
+import SearchRecommend from '@components/SearchRecommend';
 
 export default function Home() {
+  const {
+    data: { data },
+    query,
+    setQuery,
+  } = useSearch('/sick', 10000);
   return (
     <main css={homeCss.container}>
       <title css={homeCss.title}>
@@ -12,9 +19,12 @@ export default function Home() {
       </title>
 
       <section>
-        <SearchBar />
+        <SearchBar setQuery={setQuery} />
       </section>
-      <SearchRecommend />
+
+      <section>
+        {data.length || query ? <SearchRecommend data={data} query={query} /> : <div css={{ height: '350px' }}></div>}
+      </section>
     </main>
   );
 }

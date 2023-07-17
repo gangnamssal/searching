@@ -22,8 +22,11 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@pages/*": ["src/pages/*"]
+      "@libs/*": ["src/libs/*"],
+      "@apis/*": ["src/apis/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@pages/*": ["src/pages/*"],
+      "@components/*": ["src/components/*"]
     }
   },
   "include": ["src", "**/*.ts", "**/*.tsx"],
