@@ -4,21 +4,41 @@ import { AiOutlineSearch } from '@react-icons/all-files/ai/AiOutlineSearch';
 
 let keyboardInputTime: number;
 
-export default function SearchBar({ setQuery }: IProps) {
+export default function SearchBar({ data, setQuery, setKeyboardMove }: IProps) {
   const keyboardInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value.trim();
     if (keyboardInputTime) clearTimeout(keyboardInputTime);
-
-    const inputValue = e.target.value;
     keyboardInputTime = setTimeout(() => {
       if (setQuery) setQuery(() => inputValue);
     }, 400);
+  };
+
+  const plus = (num: number) => {
+    return data && num >= data?.length - 1 ? (num = data.length) : ++num;
+  };
+
+  const minus = (num: number) => {
+    return num < 1 ? (num = 0) : --num;
+  };
+
+  const handleKeyboardMove = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const code = e.code;
+
+    switch (code) {
+      case KeyCode.ArrowDown:
+        if (setKeyboardMove) setKeyboardMove(plus);
+        break;
+      case KeyCode.ArrowUp:
+        if (setKeyboardMove) setKeyboardMove(minus);
+        break;
+    }
   };
 
   return (
     <>
       <form css={searchBarCss.outer} onSubmit={(e) => e.preventDefault()}>
         <AiOutlineSearch css={searchBarCss.icon} size={20} />
-        <input css={searchBarCss.input} type="text" onChange={keyboardInput} />
+        <input css={searchBarCss.input} type="text" onChange={keyboardInput} onKeyUp={handleKeyboardMove} />
         <input css={searchBarCss.button} type="submit" value={'검색'} />
       </form>
     </>
@@ -26,7 +46,14 @@ export default function SearchBar({ setQuery }: IProps) {
 }
 
 interface IProps {
+  data?: IApiData[];
   setQuery?: React.Dispatch<React.SetStateAction<string>>;
+  setKeyboardMove?: React.Dispatch<React.SetStateAction<number>>;
+}
+
+enum KeyCode {
+  ArrowDown = 'ArrowDown',
+  ArrowUp = 'ArrowUp',
 }
 
 const searchBarCss = {

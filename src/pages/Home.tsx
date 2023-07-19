@@ -1,16 +1,25 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { useState, useEffect } from 'react';
 
 import useSearch from '@hooks/useSearch';
 import SearchBar from '@components/SearchBar';
 import SearchRecommend from '@components/SearchRecommend';
 
 export default function Home() {
+  const [keyboardMove, setKeyboardMove] = useState<number>(-1);
+
+  console.log(keyboardMove);
+
   const {
     data: { data },
     query,
     setQuery,
   } = useSearch('/sick', { expired: 10000 });
+
+  useEffect(() => {
+    setKeyboardMove(-1);
+  }, [data]);
 
   return (
     <main css={homeCss.container}>
@@ -20,11 +29,15 @@ export default function Home() {
       </title>
 
       <section>
-        <SearchBar setQuery={setQuery} />
+        <SearchBar data={data} setQuery={setQuery} setKeyboardMove={setKeyboardMove} />
       </section>
 
       <section>
-        {data.length || query ? <SearchRecommend data={data} query={query} /> : <div css={{ height: '350px' }}></div>}
+        {data.length || query ? (
+          <SearchRecommend data={data} query={query} keyboardMove={keyboardMove} />
+        ) : (
+          <div css={{ height: '350px' }}></div>
+        )}
       </section>
     </main>
   );

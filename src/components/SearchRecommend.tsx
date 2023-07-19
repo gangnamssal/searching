@@ -5,14 +5,24 @@ import SearchResult from '@components/SearchResult';
 
 const blankData = '검색어 없음';
 
-export default function SearchRecommend({ data, query }: ISearchRecommendProps) {
+export default function SearchRecommend({ data, query, keyboardMove }: ISearchRecommendProps) {
   return (
     <>
       <div css={searchRecommendCss.container}>
         <div css={searchRecommendCss.contents}>
           <p css={searchRecommendCss.header}>추천 검색어</p>
-          {data?.map((keyword: IApiData) => SearchResult(keyword, 20, true))}
-          {data?.length === 0 && query ? SearchResult(blankData, 20, false) : null}
+          {data?.map((keyword: IApiData, index: number) => (
+            <SearchResult
+              key={keyword.sickCd}
+              keyword={keyword}
+              size={20}
+              hover={true}
+              arrowKey={index === keyboardMove - 1 ? true : false}
+            />
+          ))}
+          {data?.length === 0 && query ? (
+            <SearchResult keyword={blankData} size={20} hover={false} arrowKey={false} />
+          ) : null}
         </div>
       </div>
     </>
@@ -22,6 +32,7 @@ export default function SearchRecommend({ data, query }: ISearchRecommendProps) 
 interface ISearchRecommendProps {
   data?: IApiData[];
   query: string;
+  keyboardMove: number;
 }
 
 const searchRecommendCss = {
