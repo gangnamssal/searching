@@ -7,5 +7,6 @@ export default async function getSearchingData(endPoint: string, query: string) 
       q: query,
     },
   });
+  console.info('calling api');
   return res;
 }

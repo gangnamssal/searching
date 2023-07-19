@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import useSearch from '@/hooks/useSearch';
+import useSearch from '@hooks/useSearch';
 import SearchBar from '@components/SearchBar';
 import SearchRecommend from '@components/SearchRecommend';
 
@@ -10,7 +10,8 @@ export default function Home() {
     data: { data },
     query,
     setQuery,
-  } = useSearch('/sick', 10000);
+  } = useSearch('/sick', { expired: 10000 });
+
   return (
     <main css={homeCss.container}>
       <title css={homeCss.title}>

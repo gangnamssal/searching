@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, InternalAxiosRequestConfig } from 'axios';
 
-const delay = 300;
+const delay = 100;
 
 const CancelToken = axios.CancelToken;
 

@@ -1,7 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-
-import { IApiData } from '@/hooks/useSearch';
 import { AiOutlineSearch } from '@react-icons/all-files/ai/AiOutlineSearch';
 
 export default function SearchResult(keyword: IApiData | string, size: number, hover: boolean) {

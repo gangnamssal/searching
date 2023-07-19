@@ -2,10 +2,16 @@
 import { css } from '@emotion/react';
 import { AiOutlineSearch } from '@react-icons/all-files/ai/AiOutlineSearch';
 
+let keyboardInputTime: number;
+
 export default function SearchBar({ setQuery }: IProps) {
   const keyboardInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (keyboardInputTime) clearTimeout(keyboardInputTime);
+
     const inputValue = e.target.value;
-    if (setQuery) setQuery(() => inputValue);
+    keyboardInputTime = setTimeout(() => {
+      if (setQuery) setQuery(() => inputValue);
+    }, 400);
   };
 
   return (
