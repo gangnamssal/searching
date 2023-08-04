@@ -9,8 +9,6 @@ import SearchRecommend from '@components/SearchRecommend';
 export default function Home() {
   const [keyboardMove, setKeyboardMove] = useState<number>(-1);
 
-  console.log(keyboardMove);
-
   const {
     data: { data },
     query,
