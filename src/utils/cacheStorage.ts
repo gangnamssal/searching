@@ -1,6 +1,10 @@
 class CacheStorage<K, V> {
   #storage: Map<K, V> = new Map();
 
+  getStorage() {
+    return this.#storage;
+  }
+
   get(key: K) {
     return this.#storage.get(key);
   }

@@ -1,3 +1,5 @@
+/// <reference types="vitest" />
+
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
@@ -14,5 +16,10 @@ export default defineConfig({
       { find: '@pages', replacement: '/src/pages' },
       { find: '@components', replacement: '/src/components' },
     ],
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './tests/setup.ts',
   },
 });

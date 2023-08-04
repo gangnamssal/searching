@@ -9,14 +9,14 @@ function App() {
       <Global styles={globalStyle} />
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path='/' element={<Home />} />
         </Routes>
       </Router>
     </>
   );
 }
 
-const globalStyle = css`
+export const globalStyle = css`
   body {
     width: 1280px;
     margin: 0 auto;
