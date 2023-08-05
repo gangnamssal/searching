@@ -22,7 +22,9 @@ export default function SearchRecommend({ data, query, keyboardMove }: ISearchRe
           ))}
           {data?.length === 0 && query ? (
             <SearchResult keyword={blankData} size={20} hover={false} arrowKey={false} />
-          ) : null}
+          ) : (
+            <div data-testid='no-display-searchResult' />
+          )}
         </div>
       </div>
     </>
