@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { useState, useEffect } from 'react';
 
 import useSearch from '@hooks/useSearch';
-import SearchBar from '@components/SearchBar';
+import SearchBar from '@/components/SearchBar/SearchBar';
 import SearchRecommend from '@components/SearchRecommend';
 
 export default function Home() {

@@ -1,14 +1,16 @@
 /** @jsxImportSource @emotion/react */
+import { useRef } from 'react';
 import { css } from '@emotion/react';
 import { AiOutlineSearch } from '@react-icons/all-files/ai/AiOutlineSearch';
 
-let keyboardInputTime: number;
-
 export default function SearchBar({ data, setQuery, setKeyboardMove }: IProps) {
+  const time = useRef(0);
+
   const keyboardInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value.trim();
-    if (keyboardInputTime) clearTimeout(keyboardInputTime);
-    keyboardInputTime = setTimeout(() => {
+
+    if (time.current) clearTimeout(time.current);
+    time.current = window.setTimeout(() => {
       if (setQuery) setQuery(() => inputValue);
     }, 400);
   };
@@ -38,8 +40,14 @@ export default function SearchBar({ data, setQuery, setKeyboardMove }: IProps) {
     <>
       <form css={searchBarCss.outer} onSubmit={(e) => e.preventDefault()}>
         <AiOutlineSearch css={searchBarCss.icon} size={20} />
-        <input css={searchBarCss.input} type="text" onChange={keyboardInput} onKeyUp={handleKeyboardMove} />
-        <input css={searchBarCss.button} type="submit" value={'검색'} />
+        <input
+          css={searchBarCss.input}
+          type='text'
+          aria-label='search-input'
+          onChange={keyboardInput}
+          onKeyUp={handleKeyboardMove}
+        />
+        <input css={searchBarCss.button} type='submit' aria-label='search-submit-input' value={'검색'} />
       </form>
     </>
   );
