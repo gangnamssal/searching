@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import SearchResult from '@components/SearchResult';
+import SearchResult from '@/components/SearchResult/SearchResult';
 
 const blankData = '검색어 없음';
 

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 import useSearch from '@hooks/useSearch';
 import SearchBar from '@/components/SearchBar/SearchBar';
-import SearchRecommend from '@components/SearchRecommend';
+import SearchRecommend from '@/components/SearchRecommend/SearchRecommend';
 
 export default function Home() {
   const [keyboardMove, setKeyboardMove] = useState<number>(-1);
