@@ -14,7 +14,7 @@ export default function useSearch(endPoint: string, { expired = 0 }) {
       setData(() => newData);
       cacheStorage.add(query, newData);
     },
-    [expired, endPoint, query, setData]
+    [expired, endPoint, query, setData],
   );
 
   const removeCacheAndFetchSearchingData = useCallback(() => {
